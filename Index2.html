@@ -1,0 +1,62 @@
+
+     <head>
+        <style overflow: hidden;>
+        body {
+          background-image: url("background5.jpg");
+          background-repeat: no-repeat;
+          background-size: 100%;
+          
+        }
+        </style>
+        </head>
+<body>
+
+    
+</body>
+    <script>
+        
+
+        function CsinaljUFO(event) {
+            let UFO = document.createElement("img");
+            UFO.src = "UFO.gif";
+            document.body.appendChild(UFO);
+            UFO.style.position = "absolute";
+            UFO.style.top = document.body.clientHeight*Math.random()-100;
+            UFO.style.left = -200;
+          
+            UFO.style.filter = "brightness(" + Math.random() + ")";
+            UFOs.push(UFO);
+
+            UFO.addEventListener("mousedown", robban);
+        }
+        function robban(event) {
+	var UFO = event.target;
+	document.body.removeChild(UFO);
+	ufok.splice( ufok.indexOf(UFO), 1 );
+	var bumm = document.createElement("img");
+	bumm.src = "bumm.gif?a="+Math.random();
+	document.body.appendChild(bumm);
+	bumm.style.position = "absolute"
+	bumm.style.top = event.clientY-100
+	bumm.style.left = event.clientX-100
+	bumm.style.pointerEvents = 'none';
+	var robbanHang = new Audio('bumm.mp3');
+	robbanHang.play();
+	setTimeout( function(){document.body.removeChild(bumm);}, 700);
+}
+
+        function mindentmozgat() {
+            for (var i = 0; i < UFOs.length; i++) {
+                UFOs[i].style.left = parseInt(UFOs[i].style.left) + 6 + "px";
+                if(parseInt(UFOs[i].style.left) > document.body.clientWidth){
+                    document.body.removeChild(UFOs[i]);
+                    UFOs.splice(i, 1);
+                }
+            }
+        }
+
+        setInterval(mindentmozgat, 10);
+        setInterval(CsinaljUFO, 1500)
+        var UFOs = [];
+
+    </script>
